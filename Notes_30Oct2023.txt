@@ -564,5 +564,26 @@ Solution:
 
 -----------------------------
 download maven from the below link:
-https://dlcdn.apache.org/maven/maven-3/3.9.5/source/apache-maven-3.9.5-src.zip
+https://github.com/jagasia/maven
+
+--------------------------------------
+Steps for installing maven:
+1) Download apache maven zip
+2) Unzip 
+3) copy the folder to "softwares" folder 	( if it is not there, create one)
+4) copy the path of "bin"
+
+d:\softwares\apache-maven-3.9.5-src\apache-maven-3.9.5\apache-maven\src\bin
+
+5) Go to environment variables (of your account)
+	edit the "path" env var
+	Append this path to the "path"
+
+Click Ok
+6) open a new cmd prompt
+	mvn -version
+
+Tell me if you are able to see maven version
+
+------------------------------------------------------------
 
