@@ -253,3 +253,106 @@ Year	Semester	Subject	Marks
             <li>Strawberry</li>
           </ol>
 
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>This is heading 1</h1>
+    <h2>This is heading 2</h2>
+    <div>This is a div</div>
+    <span>This is a span</span>
+    <br />
+    a <br />
+    b
+
+    <p>1 <8 8>7</p>
+
+    <p>1 &lt; 8 8 &gt; 7</p>
+    <ul type="circle">
+      <li>India</li>
+      <li>Australia</li>
+      <li>Sri lanka</li>
+    </ul>
+
+    <ol type="1" start="25">
+      <li>Peach</li>
+      <li>Apricot</li>
+      <li>Banana</li>
+      <li>Strawberry</li>
+    </ol>
+
+    <table border="1">
+      <thead>
+        <tr>
+            <th>Year</th>
+            <th>Semester</th>
+            <th>Subject</th>
+            <th>Marks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <td rowspan="6">1</td>
+            <td rowspan="3">1</td>
+            <td>1</td>
+            <td>50</td>            
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>50</td>            
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td rowspan="3">2</td>
+            <td>4</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td rowspan="6">2</td>
+            <td rowspan="3">3</td>
+            <td>7</td>
+            <td>50</td>            
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>50</td>            
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td rowspan="3">4</td>
+            <td>10</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td>12</td>
+            <td>50</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+
