@@ -1,0 +1,47 @@
+Javascript 
+outputs
+Writing into an HTML element, using innerHTML.
+Writing into the HTML output using document.write().
+Writing into an alert box, using window.alert().
+Writing into the browser console, using console.log().
+
+variables
+	automatically
+	var
+	let
+	const
+
+operators
+Data types:
+JavaScript has 8 Datatypes
+1. String
+2. Number
+3. Bigint
+4. Boolean
+5. Undefined
+6. Null
+7. Symbol
+8. Object
+
+if else
+switch
+while
+for in
+for of
+
+
+Functions
+
+Arrow Functions
+
+Objects
+
+Events
+
+String methods
+
+Arrays
+
+Dates
+
+Math
