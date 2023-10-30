@@ -821,3 +821,21 @@ Final code:
 
 </body>
 </html>
+---------------------------------------------------
+Task:
+Create a signup form
+
+Username:
+Password:
+Confirm Password:
+Email:
+Date of Birth:
+Phone:
+Submit
+Submit button must be enabled only if all the following rules are satisfied.
+1) password and confirm password must match. Else error message in RED color
+2) Email address must be valid
+3) Date of Birth cannot be future date
+4) Phone number must be 10 digit number
+5) User name must be atleast 5 characters
+All errors should be displayed as unordered list below the button
