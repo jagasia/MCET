@@ -85,3 +85,62 @@ public class App {
 
 }
 
+--------------------
+1) we have run SELECT statement
+	executeQuery	returns ResulSet
+2) we have to run INSERT/UPDATE/DELETE statement
+	executeUpdate	returns int		no of rows affected
+3) all statements can be executed using:
+	execute
+
+
+different types of statements:
+	Statement
+	PreparedStatement
+	CallableStatement
+
+Statement
+	is used in this example, because, we use simple SELECT statement
+	sometimes, we need to get input from the user and use that in the SQL statement
+	
+PreparedStatement
+	is used for parameterized statements
+	INSERT INTO EMPLOYEES VALUES (?,?,?,?)
+
+CallableStatement
+	is used to call stored procedures and functions present in the database
+--------------------------------------
+HTML
+	HyperText Markup Language
+
+is based on SGML	
+
+Browser
+	is used to execute HTML program
+	ex:	Google Chrome
+		Microsoft Edge
+		Mozilla Firefox
+Any web page we create, needs HTML
+
+Samsung
+Airtel
+
+Root element 
+	HTML
+
+Tags	=	Elements
+
+<p align="left">this is a paragraph</p>
+
+p is the element
+align is the attribute		value of attribute must be in double quotes
+	<table border="1">	</table>
+this is the paragraph		is displayed 
+
+start element	start tag
+end element	end tag
+
+ELEMENTS
+ATTRIBUTES
+ENTITIES
+	
