@@ -833,11 +833,11 @@ Date of Birth:
 Phone:
 Submit
 Submit button must be enabled only if all the following rules are satisfied.
-1) password and confirm password must match. Else error message in RED color
-2) Email address must be valid
-3) Date of Birth cannot be future date
-4) Phone number must be 10 digit number
-5) User name must be atleast 5 characters
+1) password and confirm password must match. Else error message in RED color	DONE
+2) Email address must be valid			DONE
+3) Date of Birth cannot be future date		DONE
+4) Phone number must be 10 digit number		DONE
+5) User name must be atleast 5 characters		DONE
 All errors should be displayed as unordered list below the button
 
 
@@ -881,5 +881,63 @@ All errors should be displayed as unordered list below the button
             </tr>
         </table>
     </form>
+</body>
+</html>
+
+Javascript:
+Objects
+
+convert object into String:		JSON.stringify(obj)
+convert String into object:		JSON.parse(str);
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function fn1()
+        {
+            var obj={"id":"1","firstName":"Tanveer","lastName":"Ahamed"};
+            // obj.id=2;
+            // obj.firstName="Jagadeeswaran"
+            // obj.lastName="R"
+            // alert(obj.firstName)
+            // alert(obj.lastName)
+            // alert(obj.id)
+            // //convert an object into a string
+            alert(JSON.stringify(obj))
+        }
+        function fnImport()
+        {
+            var str=document.getElementById("txtInput").value;
+            var obj=JSON.parse(str);        //to convert String into object
+            document.getElementById("txtId").value=obj.id;
+            document.getElementById("txtFirstname").value=obj.firstName;
+            document.getElementById("txtLastname").value=obj.lastName;
+
+        }
+        function fnSubmit()
+        {
+            var obj={"id":"1","firstName":"Tanveer","lastName":"Ahamed"};
+            obj.id=document.getElementById("txtId").value;
+            obj.firstName=document.getElementById("txtFirstname").value;
+            obj.lastName=document.getElementById("txtLastname").value;
+            var str=JSON.stringify(obj);
+            document.getElementById("txtInput").value=str;
+        }
+    </script>
+</head>
+<body>
+    <input type="text" name="" id="txtInput">
+    <input type="button" value="Import" onclick="fnImport()">
+    <hr>
+    Id: <input type="number" name="" id="txtId"><br>
+    First Name: <input type="text" name="" id="txtFirstname"><br>
+    Last Name: <input type="text" name="" id="txtLastname"><br>
+    <input type="button" value="Submit" onclick="fnSubmit()">
 </body>
 </html>

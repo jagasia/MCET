@@ -4,6 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script>
+        var condition1=false;
+        function fnPwd()
+        {            
+            var pwd=document.getElementById("txtPwd").value;
+            var cpwd=document.getElementById("txtCpwd").value;
+            condition1= (pwd==cpwd);
+            console.log(condition1)
+            if(!condition1)
+                document.getElementById("divErrors").innerHTML="<font color=red>Passwords does not match</font>"
+            else
+                document.getElementById("divErrors").innerHTML=""
+        }
+
+     
+    </script>
 </head>
 <body>
     <form>
@@ -12,19 +28,19 @@
                 <th colspan="2" align="center">Signup Form</th>
             </tr>
             <tr>
-                <td>User Name</td><td><input type="text" name="" id="" required></td>
+                <td>User Name</td><td><input type="text" name="" id="" pattern="[A-Za-z]{5,}" required></td>
             </tr>
             <tr>
-                <td>Password</td><td><input type="password" name="" id=""></td>
+                <td>Password</td><td><input type="password" name="" id="txtPwd"></td>
             </tr>
             <tr>
-                <td>Confirm Password</td><td><input type="password" name="" id=""></td>
+                <td>Confirm Password</td><td><input type="password" name="" id="txtCpwd" onkeyup="fnPwd()"></td>
             </tr>
             <tr>
                 <td>Email</td><td><input type="email" name="" id=""></td>
             </tr>
             <tr>
-                <td>Date of Birth</td><td><input type="date" name="" id=""></td>
+                <td>Date of Birth</td><td><input type="date" name="" id="txtDob" ></td>
             </tr>
             <tr>
                 <td>Phone</td><td><input type="text" name="" id="" pattern="[0-9]{10}"></td>
@@ -36,6 +52,20 @@
                 </td>
             </tr>
         </table>
+        <div id="divErrors">
+
+        </div>
+
+        <script>
+            var dob=document.getElementById("txtDob");
+            var today=new Date().toISOString()
+            var arr=today.split("T");
+            var x=arr[0];
+            dob.max=x
+
+
+
+        </script>
     </form>
 </body>
 </html>

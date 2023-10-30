@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function fn1()
+        {
+            var obj={"id":"1","firstName":"Tanveer","lastName":"Ahamed"};
+            // obj.id=2;
+            // obj.firstName="Jagadeeswaran"
+            // obj.lastName="R"
+            // alert(obj.firstName)
+            // alert(obj.lastName)
+            // alert(obj.id)
+            // //convert an object into a string
+            alert(JSON.stringify(obj))
+        }
+        function fnImport()
+        {
+            var str=document.getElementById("txtInput").value;
+            var obj=JSON.parse(str);        //to convert String into object
+            document.getElementById("txtId").value=obj.id;
+            document.getElementById("txtFirstname").value=obj.firstName;
+            document.getElementById("txtLastname").value=obj.lastName;
+
+        }
+        function fnSubmit()
+        {
+            var obj={"id":"1","firstName":"Tanveer","lastName":"Ahamed"};
+            obj.id=document.getElementById("txtId").value;
+            obj.firstName=document.getElementById("txtFirstname").value;
+            obj.lastName=document.getElementById("txtLastname").value;
+            var str=JSON.stringify(obj);
+            document.getElementById("txtInput").value=str;
+        }
+    </script>
+</head>
+<body>
+    <input type="text" name="" id="txtInput">
+    <input type="button" value="Import" onclick="fnImport()">
+    <hr>
+    Id: <input type="number" name="" id="txtId"><br>
+    First Name: <input type="text" name="" id="txtFirstname"><br>
+    Last Name: <input type="text" name="" id="txtLastname"><br>
+    <input type="button" value="Submit" onclick="fnSubmit()">
+</body>
+</html>
