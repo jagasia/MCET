@@ -144,3 +144,78 @@ ELEMENTS
 ATTRIBUTES
 ENTITIES
 	
+Visual Studio Code
+	we can download this for free
+
+typing html in vs code itself is an art.
+In vs code, if you save the file with proper extension, then this IDE will help us in that language.
+
+in vs code, we can open a FOLDER
+
+
+Task:
+	identify how many types of headings are there in HTML
+	Ans:
+		H1		is the largest
+		H6		is the smallest
+totally there are 6 size of headings
+
+Headings are block elements
+
+
+
+h1 {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+
+
+div {
+    display: block;
+}
+
+
+
+display:	block	|	inline	|	none
+
+
+Element can be:
+	empty		<hr/>		<br/>
+	content		<b>	</b>
+	containers		<div>	<p>	 </p>	</div>
+
+
+tags cannot overlap. They must nest properly
+case insensitive. Tags can be in upper or lower or mixed case.
+
+
+	<p>	1 <8	8>7	</p>
+
+
+<p> 1 &lt; 8        8 &gt; 7</p>
+
+
+Entities:
+	&gt;
+	&ge;
+	&lt;
+	&le;
+	&ne;
+	&eq;
+	&nbsq;
+
+
+Use the online edition, (link is given below) to practise:
+1) Paragraphs
+2) Tables
+3) Lists
+
+
+https://www.w3schools.com/html/html_editor.asp
+
