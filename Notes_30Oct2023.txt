@@ -219,3 +219,22 @@ Use the online edition, (link is given below) to practise:
 
 https://www.w3schools.com/html/html_editor.asp
 
+Task for List:
+	1) Un Ordered list with round, box, solid round heads
+	2) Ordered lists starting with 25, numeric, 	roman, a,b,c ETC
+	
+Task for Tables:
+	Print the following table
+Year	Semester	Subject	Marks
+1	1	1	50
+		2	50
+		3	50
+	2	4	50
+		5	50
+		6	50
+2	3	7	50
+		8	50
+		9	50
+	4	10	50
+		11	50
+		12	50
