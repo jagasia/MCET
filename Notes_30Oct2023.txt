@@ -356,3 +356,83 @@ Year	Semester	Subject	Marks
   </body>
 </html>
 
+
+
+
+for colpan:
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th colspan="4">Performance Report</th>
+            </tr>
+        </thead>
+      <thead>
+        <tr>
+            <th>Year</th>
+            <th>Semester</th>
+            <th>Subject</th>
+            <th>Marks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <td rowspan="6">1</td>
+            <td rowspan="3">1</td>
+            <td>1</td>
+            <td>50</td>            
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>50</td>            
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td rowspan="3">2</td>
+            <td>4</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td rowspan="6">2</td>
+            <td rowspan="3">3</td>
+            <td>7</td>
+            <td>50</td>            
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>50</td>            
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td rowspan="3">4</td>
+            <td>10</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td>12</td>
+            <td>50</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+
