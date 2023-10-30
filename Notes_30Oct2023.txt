@@ -1,20 +1,36 @@
-HTML
-Elements
-Attributes
-Headings
-Paragraphs
-Style
-Formatting
-Comments
-Lists
-Tables
-Block & Inline
-ID & Class
+	https://github.com/jagasia/MCET
+	Jdbc:
 
-HTML5
-Web forms / inputs
-web storage
-canvas
-audio
-video
-geo location
+	a java program can connect to database using JDBC API.
+
+Any db?	No. Only when the Database vendor provides the implementation of jdbc interfaces.
+Mysql vendor provides "mysql connector jar"
+oracle vendor provides "ojdbc jar"
+
+jdbc implementations comes as jar files from db vendors
+
+these are free downloadable from vendor's website
+----------------------
+Process of connecting to db using JDBC
+1) Load the driver	(skip this step in java 8 or later)
+2) Establish the connection
+	URL, username, password
+	URL	jdbc:mysql://localhost:3306
+3) execute the statement
+
+
+CREATE DATABASE MCET;
+USE MCET;
+
+CREATE TABLE EMPLOYEES
+(
+	ID INT PRIMARY KEY,
+    FIRST_NAME VARCHAR(20) NOT NULL,
+    LAST_NAME VARCHAR(20),
+    SALARY INT
+);
+
+
+INSERT INTO EMPLOYEES VALUES(2,'Thanveer','Ahamed',50000);
+
+select * from employees;
