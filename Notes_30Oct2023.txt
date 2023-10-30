@@ -238,3 +238,18 @@ Year	Semester	Subject	Marks
 	4	10	50
 		11	50
 		12	50
+
+
+ <ul type="circle">
+            <li>India</li>
+            <li>Australia</li>
+            <li>Sri lanka</li>
+        </ul>
+
+        <ol type="1" start="25">
+            <li>Peach</li>
+            <li>Apricot</li>
+            <li>Banana</li>
+            <li>Strawberry</li>
+          </ol>
+
