@@ -34,3 +34,24 @@ CREATE TABLE EMPLOYEES
 INSERT INTO EMPLOYEES VALUES(2,'Thanveer','Ahamed',50000);
 
 select * from employees;
+
+1) create a java project 	30-oct-1
+2) create App.java
+	hello world
+3) copy the mysql connector jar to "bin" folder
+	copy from downloads folder to your project bin folder
+
+steps to add this jar to class path/ build path:
+	1) right click project
+		-> properties
+			-> Java Build path
+				-> Libraries tab
+					-> add external jar
+
+
+For intelliJ:
+Open Project Structure
+Select Modules, then click on the module for which you want the dependency
+Choose the Dependencies tab
+Click the '+' at the bottom of the page and choose the appropriate way to connect to the library file. If the jar file is already listed in Libraries, then select 'Library'.
+
