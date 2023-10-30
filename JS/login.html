@@ -20,12 +20,25 @@
                 document.getElementById("divResult").innerHTML="<font color=red>Login failed</font>"
             }
         }
+        function fnShow()
+        {
+            var checked=document.getElementById("chkShowPassword").checked;
+            var pwd=document.getElementById("txtPassword");
+            if(checked)
+            {
+                //show
+                pwd.setAttribute("type","text");
+            }else{
+                //hide
+                pwd.setAttribute("type","password");
+            }
+        }
     </script>
 </head>
 <body>
     Username: <input type="text" name="" id="txtUsername"><br>
     Password: <input type="password" name="" id="txtPassword"><br>
-    <input type="checkbox" name="" id="chkShowPassword"><label for="chkShowPassword">Show Password</label>
+    <input type="checkbox" name="" id="chkShowPassword" onchange="fnShow()"><label for="chkShowPassword">Show Password</label>
     <input type="button" value="Login" onclick="fnLogin()"><br/>
     <div id="divResult">
 
