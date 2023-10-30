@@ -649,3 +649,82 @@ TasK:
 	else it should say "Login failed"
 
 alert is used to show message box.
+
+Hint:
+javascript code to access the value of a textbox (by using textbox id) if textbox id is txtUsername
+var username=document.getElementById("txtUsername").value;		
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function fnLogin()
+        {
+            var username=document.getElementById("txtUsername").value;
+            var password=document.getElementById("txtPassword").value;
+            if(username==password)
+                alert("Login successful")
+            else
+                alert("Login failed")
+        }
+    </script>
+</head>
+<body>
+    Username: <input type="text" name="" id="txtUsername"><br>
+    Password: <input type="password" name="" id="txtPassword"><br>
+    <input type="button" value="Login" onclick="fnLogin()"><br/>
+
+
+</body>
+</html>
+-----------------------
+Lets display the output in <DIV>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function fnLogin()
+        {
+            var username=document.getElementById("txtUsername").value;
+            var password=document.getElementById("txtPassword").value;
+            if(username==password)
+            {
+                // alert("Login successful")
+                document.getElementById("divResult").innerHTML='<font color="green">Login successful</font>'
+            }
+            else
+            {
+                // alert("Login failed")
+                document.getElementById("divResult").innerHTML="<font color=red>Login failed</font>"
+            }
+        }
+    </script>
+</head>
+<body>
+    Username: <input type="text" name="" id="txtUsername"><br>
+    Password: <input type="password" name="" id="txtPassword"><br>
+    <input type="button" value="Login" onclick="fnLogin()"><br/>
+    <div id="divResult">
+
+    </div>
+
+
+</body>
+</html>
+
+
+-------------------------
+Find out what is the difference between innerText and innerHTML?
+
+-------------------------
+Task:
+Password textbox should show the password / mask the password based on a check box
+Show Password
+-----------
