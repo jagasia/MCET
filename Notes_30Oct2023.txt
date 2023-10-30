@@ -586,4 +586,66 @@ Click Ok
 Tell me if you are able to see maven version
 
 ------------------------------------------------------------
+Javascript:
+-----------------
+HTML
+	Web pages that present information.
+	
+compute
+calculate
+validate
 
+
+
+
+Scripting language
+	client side
+		javascript		EcmaScript 6
+		vbscript
+		jquery
+
+
+		validations are done in client side.
+
+	server side
+		servlet
+		jsp
+		php
+		asp
+
+
+datatypes in javascript?
+javascript infers the datatype from the value assigned to the variable
+
+var i=20;
+
+
+JavaScript has 8 Datatypes
+1. String
+2. Number
+3. Bigint
+4. Boolean
+5. Undefined
+6. Null
+7. Symbol
+8. Object
+
+
+single quotes / double quotes both are same.
+var str='hello world';
+var str2="hello world";
+both of the above lines are same
+
+semi colon is optional. Not mandatory.
+
+JSON
+
+
+TasK:
+--------
+1) create a login page in html
+2) on clicking the "Login" button
+	it should validate and say "Login is successful" if username and password are same.
+	else it should say "Login failed"
+
+alert is used to show message box.
