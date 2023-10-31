@@ -291,3 +291,247 @@ on submitting the form, it redirects to LoginServlet
 LoginServlet should check if username and password are same.
 then display Login successful.
 Else display Login failed.
+
+
+Instead of checking username equals to password, can we check from database?
+
+SELECT * FROM USER_MASTER WHERE USERNAME=? AND PASSWORD=?
+
+if we get 1 row, then login is successful.
+if we get 0 row, then login is failure.
+
+for jdbc, we need mysql connector jar file
+add this jar file to WEB-INF/lib folder.
+
+1) Employee.java
+2) EmployeeDao.java
+3) EmployeeDaoImpl.java
+4) employee.jsp
+5) EmployeeServlet.java
+
+Demo:
+1) create a dynamic web project 	"login-jdbc"
+2) WebContent\WEB-INF\lib 
+	paste the mysql-connector-java-5.1.47.jar
+3) login.jsp
+
+
+Mysql
+
+CREATE TABLE USER_MASTER
+(
+USERNAME VARCHAR(20) PRIMARY KEY,
+PASSWORD VARCHAR(20) NOT NULL,
+FULLNAME VARCHAR(20)
+);
+
+INSERT INTO USER_MASTER VALUES('tanveer','ahamed','Tanveer Ahamed');
+INSERT INTO USER_MASTER VALUES('bharath','kumar','Bharath Kumar');
+INSERT INTO USER_MASTER VALUES('karthick','avlodhan','Karthick');
+
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="jag.css">
+</head>
+<body>
+<div class="p-5 bg-info text-white">
+    <h1 class="text-center">Welcome to my page</h1>
+    <p class="text-center">This is created by III IT</p>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        One
+    </div>
+    <div class="col-sm-4">
+        <form class="container-fluid" action="LoginServlet">
+            User name: <input type="text" name="username" id="" class="form-control" >
+            Password: <input type="password" name="password" id="" class="form-control">
+            <br>
+            <input type="submit" value="Login" class="btn btn-success">&nbsp;&nbsp;&nbsp;
+            <input type="reset" value="Reset" class="btn btn-warning">
+        </form>
+        <br>
+    </div>
+    <div class="col-sm-4">
+        Three
+    </div>    
+</div>
+<div class="row">
+    <div class="col-sm-2">
+
+    </div>
+    <div class="col-sm-8">
+        <table border="1" width="100%">
+            <thead>
+                <tr>
+                    <th class="text-center" colspan="4">Performance Report</th>
+                </tr>
+            </thead>
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Semester</th>
+                <th>Subject</th>
+                <th>Marks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+                <td rowspan="6">1</td>
+                <td rowspan="3">1</td>
+                <td>1</td>
+                <td>50</td>            
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>50</td>            
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td rowspan="3">2</td>
+                <td>4</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td rowspan="6">2</td>
+                <td rowspan="3">3</td>
+                <td>7</td>
+                <td>50</td>            
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>50</td>            
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td rowspan="3">4</td>
+                <td>10</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>50</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+    <div class="col-sm-2">
+
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+package controller;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import java.sql.Connection;
+
+/**
+ * Servlet implementation class LoginServlet
+ */
+@WebServlet("/LoginServlet")
+public class LoginServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public LoginServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String username=request.getParameter("username");
+		String password=request.getParameter("password");
+		
+		PrintWriter out = response.getWriter();
+		
+		//load the driver
+		Connection con=null;
+		try {
+			new com.mysql.jdbc.Driver();
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mcet","root","");
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery("SELECT * FROM USER_MASTER WHERE USERNAME='"+username+"' AND PASSWORD='"+password+"'");
+			if(rs.next())
+			{
+				out.print("Success..Welcome "+rs.getString("FULLNAME"));
+			}else
+			{
+				out.println("Failed");
+			}
+			con.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//connect to database
+		//execute the statement
+		
+		
+//		if(username.equals(password))
+//		{
+//			out.println("Success");
+//		}else
+//		{
+//			out.print("Failure");
+//		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
+
+
