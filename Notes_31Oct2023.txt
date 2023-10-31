@@ -283,3 +283,11 @@ public class MathsServlet extends HttpServlet {
 	}
 
 }
+-----------------------------
+Task:
+
+create "login.jsp" that accepts username and password from the user.
+on submitting the form, it redirects to LoginServlet
+LoginServlet should check if username and password are same.
+then display Login successful.
+Else display Login failed.
