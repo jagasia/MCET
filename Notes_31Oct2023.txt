@@ -133,3 +133,10 @@ Create a home page with jumbotron and few columns of content
 JUMBOTRON 	center
 Row1		3 columns.		middle column to have form
 Row2		one table wider in the center
+
+
+
+Download Apache tomcat from :
+https://github.com/jagasia/tomcat
+
+download the zip and unzip and then copy to the D:\Softwares folder
