@@ -92,3 +92,15 @@ Task:
 		spacing
 
 https://www.w3schools.com/csS/css_boxmodel.asp
+
+border	:	border-width	border-style	border-color
+border-width	borderWidth
+
+download zip file from 
+	https://github.com/jagasia/maven
+
+create d:\softwares folder
+inside this softwares folder, keep the unziped folder
+
+d:\softwares\apache-maven-3.6.3
+
