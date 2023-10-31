@@ -7,6 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-Hello world
+<a href="MyServlet">Click to call servlet</a>
+<br/>
+<form action="ms">
+	Number 1: <input type="number" name="no1" /><br/>
+	Number 2: <input type="number" name="no2" /><br/>
+	<input type="submit" value="Add" />
+</form>
 </body>
 </html>

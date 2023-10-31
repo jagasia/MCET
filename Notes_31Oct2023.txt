@@ -200,8 +200,17 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		// TODO Auto-generated method stub
 		response.getWriter().append("Hello world");
 	}
+http://localhost:8080/31-oct-1/index.jsp
+http://localhost:8080/31-oct-1/MyServlet
 
-http://localhost:8080/31-oct-1/MyServletx
 
+Demo:
+index.jsp
+	should accept 2 numbers as input
+	and submit the form to MathsServlet
 
+MathsServlet
+	should add those 2 numbers and print the output
 
+How a servlet can get inputs???
+	doGet	method has 2 arguments
