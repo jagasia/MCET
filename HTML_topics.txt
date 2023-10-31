@@ -13,8 +13,17 @@ ID & Class
 
 HTML5
 Web forms / inputs
+	TEXT
+	NUMBER
+	DATE
+	EMAIL
+	RANGE
+	FILE
 web storage
+	store data in localStorage/ sessionStorage
 canvas
 audio
 video
 geo location
+	i want to find from where the user is accessing my website.
+

@@ -319,3 +319,15 @@ org.eclipse.ecf.filetransfer.BrowseFileTransferException: HttpComponents connect
 
 !ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2023-10-30 10:10:00.637
 !MESSAGE executing callback sts4.classpath.sdnpcGHL SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2023-10-30 16:30:38.801
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.sdnpcGHL
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2023-10-30 16:30:38.858
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.sdnpcGHL
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2023-10-30 16:30:38.898
+!MESSAGE subsribers = null
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2023-10-30 16:30:38.899
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.sdnpcGHL => OK

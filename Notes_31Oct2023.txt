@@ -1,0 +1,66 @@
+CSS
+	Cascading StyleSheet
+
+is very popular stylesheet technique used in most of the websites.
+
+Why we need CSS?
+	Styling.	But HTML can do that.
+	whatever related to presentation, can be done in HTML itself. Then why we need CSS?
+
+	ans:	We want to separate the responsibility 
+	one team will focus on the aesthetics	css developers
+	one team will focus on the forms	html developers
+
+suppose, there are around 10 web pages in a website.
+all pages should appear consistently.
+
+one css is applied to all the 10 webpages. Now, if you change that 1 css file, then all the 10 html pages are reflecting that change.
+------------------------------
+There are 3 ways you can use CSS in html
+	i) inline
+	ii) internal
+	iii) external
+
+inline:
+	using "style" attribute
+	ex:
+		<p style="text-align:center">This is a paragraph</p>    
+		<p style="text-align:right">This is another paragraph</p>    
+
+
+internal:
+	using "style" element
+
+Selectors:
+	element selector
+	id selector
+	class selector
+	pseudo selector
+	universal selector
+
+
+        p
+        {
+            text-align: right;
+            color:blue
+        }
+
+        #p4
+        {
+            color:red
+        }
+
+Task:
+Identify the types of selectors used in CSS.
+
+
+Reminder:
+	how to use external stylesheet
+
+
+
+----------------
+Note:
+Delete "apache-maven-3.9.5-src" in your downloads folder. If you have copied it to softwares folder, then remove that also.
+
+in environment variable, path, remove that entry alone.
