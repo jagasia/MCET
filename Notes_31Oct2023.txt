@@ -64,3 +64,31 @@ Note:
 Delete "apache-maven-3.9.5-src" in your downloads folder. If you have copied it to softwares folder, then remove that also.
 
 in environment variable, path, remove that entry alone.
+----------------------------------------------------------
+How to use external stylesheet?
+using "link" element
+
+
+    <link rel="stylesheet" href="blue.css">
+
+
+
+Color code:
+1) color name		
+2) color code	#rrggbb		each portion is in hexadecimal code
+		#ffffff		red, green, blue all are high	=	white
+		#000000		black
+3) rgb function
+	rgba function		a is used for transparancy
+
+--------------------------------------------
+Box Model
+
+Task:
+	identify how to use box in css
+		margin
+		padding
+		border
+		spacing
+
+https://www.w3schools.com/csS/css_boxmodel.asp

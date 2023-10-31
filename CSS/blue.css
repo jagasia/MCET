@@ -1,0 +1,25 @@
+p
+{
+    color:blue
+}
+
+input[type='button']
+{
+    color:red
+}
+
+input[type='text']
+{
+    color:blueviolet
+}
+
+.border-red
+{
+    border-color: red;
+
+}
+
+.fill-blue
+{
+    background-color: #ffffff;
+}
