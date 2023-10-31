@@ -140,3 +140,68 @@ Download Apache tomcat from :
 https://github.com/jagasia/tomcat
 
 download the zip and unzip and then copy to the D:\Softwares folder
+
+-------------------------
+In eclipse 
+	File -> New -> Dynamic Web Project
+
+
+	http://localhost:8080/<<projectname>>/<<jspfilename.jsp>>
+ex:
+	http://localhost:8080/31-oct-1/index.jsp
+
+Error:
+Port 8080 required by tomcat v 9.0 server at localhost is already in use.
+
+rootcase:
+	Already our project is running. we are running again.		
+	Already some other process runs in 8080. so we are getting this error.
+
+solutions:
+	1) we can find and end that process running in 8080
+		to find which process is running in 8080
+		in cmd:
+			netstat -aon
+	2) we can run our project in a different port number
+		double click our server
+			change 8080 into 8081	or 8082	or anything
+
+
+JSP file is used as a VIEW
+suppose, if user enters inputs in jsp and then submit the form,
+it should go to SERVLET
+
+We are going to create our first Servlet.
+Servlet is a java program.
+A class that extends HttpServlet is a Servlet.	
+	HttpServlet is a sub class of GenericServlet
+
+Servlets have life cycle:
+	init
+	service
+		doGet
+		doPost
+	destroy
+
+Life cycle is managed by container.
+What is container?
+	is a special JVM that provides runtime for Servlets  &  Jsp
+
+Servlets & JSP are web components.
+
+Right click project -> New -> Servlet
+
+class name must start with Capital letter
+
+Service method:
+	the service method is called whenever the servlet is called
+
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Hello world");
+	}
+
+http://localhost:8080/31-oct-1/MyServletx
+
+
+
