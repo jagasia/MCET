@@ -110,9 +110,26 @@ open a new cmd prompt:
 Microsoft Windows [Version 10.0.19045.3570]
 (c) Microsoft Corporation. All rights reserved.
 
-C:\Users\rjaga>mvn -version
+C:\Users\rjaga>mvn 	-version
 Apache Maven 3.6.3 (cecedd343002696d0abb50b32b541b8a6ba2883f)
 Maven home: C:\Program Files\Apache Software Foundation\apache-maven-3.6.3\bin\..
 Java version: 1.8.0_281, vendor: Oracle Corporation, runtime: C:\Program Files\Java\jdk1.8.0_281\jre
 Default locale: en_IN, platform encoding: Cp1252
 OS name: "windows 10", version: "10.0", arch: "amd64", family: "windows"
+
+
+--------------------------------------
+Task:
+Create a html page, that contains 10 text boxes. Each textbox in separate line.
+
+When user navigates to each text box, the current text box should be highlighted in background color as yellow.
+
+
+
+
+Task:
+Create a home page with jumbotron and few columns of content
+
+JUMBOTRON 	center
+Row1		3 columns.		middle column to have form
+Row2		one table wider in the center
