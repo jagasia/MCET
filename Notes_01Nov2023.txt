@@ -491,6 +491,7 @@ Task:
 Create the following classes and configure them as beans using Annotation
 class: Address	(id, street, city)
 class: Customer	(id, name, address)
+Hint: use @Autowired to inject address into Customer
 
 
 
