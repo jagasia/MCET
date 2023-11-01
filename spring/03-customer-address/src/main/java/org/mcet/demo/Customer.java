@@ -12,7 +12,7 @@ public class Customer {
 		this.id = id;
 		this.name = name;
 	}
-	@Autowired
+	@Autowired 
 	private Address address;
 	
 	public Customer() {}
