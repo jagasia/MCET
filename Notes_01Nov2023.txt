@@ -495,3 +495,152 @@ Hint: use @Autowired to inject address into Customer
 
 
 
+1) create a maven project:	03-customer-address
+2) pom.xml
+<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>5.2.7.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>5.2.7.RELEASE</version>
+		</dependency>
+3) Address.java
+package org.mcet.demo;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Address {
+	private Integer id=1;
+	private String street="Udumalaipettai road";
+	private String city="Pollachi";
+	
+	public Address() {}
+
+	public Address(Integer id, String street, String city) {
+		super();
+		this.id = id;
+		this.street = street;
+		this.city = city;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	@Override
+	public String toString() {
+		return "Address [id=" + id + ", street=" + street + ", city=" + city + "]";
+	}
+	
+}
+
+
+4) Customer.java
+package org.mcet.demo;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class Customer {
+	private Integer id;
+	private String name;
+	public Customer(Integer id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+	@Autowired 
+	private Address address;
+	
+	public Customer() {}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", name=" + name + ", address=" + address + "]";
+	}
+	
+}
+
+5) MyConfiguration.java
+package org.mcet.demo;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan(basePackages = {"org.mcet.demo"})
+public class MyConfiguration {
+
+	
+}
+
+
+6) App.java
+package org.mcet.demo;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
+        AnnotationConfigApplicationContext ctx=new AnnotationConfigApplicationContext(MyConfiguration.class);
+        Customer c = ctx.getBean(Customer.class);
+        System.out.println(c);
+    }
+}
+

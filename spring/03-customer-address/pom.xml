@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.mcet.demo</groupId>
-	<artifactId>01-nov-3</artifactId>
+	<artifactId>03-customer-address</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>01-nov-3</name>
+	<name>03-customer-address</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
