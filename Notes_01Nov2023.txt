@@ -5,6 +5,11 @@ Checklist: (for maven)
 2) the location of "bin" is copied to "path" environment variable.
 3) in cmd prompt:
 	mvn -version
+environment variable:
+JAVA_HOME	C:\Program Files\Java\jdk1.8.0_281
+note:	JAVA_HOME path do not have "bin"
+PATH		%JAVA_HOME%\bin		
+note:	already there are many paths found in "PATH" env var. Append the above. DON'T REPLACE EVERYTHING
 -----------------------------------------
 Things to be done:
 1) creating a maven project and running a "Hello world"
