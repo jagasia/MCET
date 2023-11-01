@@ -1,0 +1,13 @@
+Sprint Boot - 1
+
+Checklist: (for maven)
+1) Maven is downloaded, unzipped, the folder is copied to d:\softwares folder
+2) the location of "bin" is copied to "path" environment variable.
+3) in cmd prompt:
+	mvn -version
+-----------------------------------------
+Things to be done:
+1) creating a maven project and running a "Hello world"
+2) creating a maven project and add "Spring, Hibernate" dependencies
+	configuring spring using "xml" and "annotations"
+3) then learn hibernate along with Spring
