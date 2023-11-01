@@ -16,3 +16,481 @@ Things to be done:
 2) creating a maven project and add "Spring, Hibernate" dependencies
 	configuring spring using "xml" and "annotations"
 3) then learn hibernate along with Spring
+
+---------------------------
+Demo:
+Create our first maven project
+1) File -> New -> Project -> search for "Maven Project"
+there are lot of archetypes. We choose "quickstart" archetype for "java project"
+a maven project will have
+	Group Id		
+	Artifact Id
+	Package name
+
+Group id:
+	com.upskillit.hrms
+	org.apache.tomcat
+Artifact id:
+	01-nov-1
+Package name:
+	same as group id
+
+we have created a maven project
+
+------------------------------------
+Task:
+create a maven project of quickstart archetype
+
+group id:		org.mcet.task
+artifact id:		01-nov-1
+package name:	same as group id
+
+run the project and see hello world
+------------------------------------------
+In maven, the project do not contain .jar files physically. The project contains the <dependency> in the pom.xml
+So when i upload project, .jar files are not uploaded. Rather, the dependency entries in pom.xml are there.
+In your system, when you run the project, those .jar files as per the dependencies, are downloaded in your system.
+
+First program in Spring:
+1) Create a maven project
+2) every maven project has a "pom.xml"
+	Project Object Model
+		is the configuration file for the project. 
+		
+3) in this pom.xml, add the following dependencies:
+	spring core
+	spring context
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.mcet.demo</groupId>
+  <artifactId>01-nov-1</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>01-nov-1</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <springframework.version>4.3.6.RELEASE</springframework.version>
+  </properties>
+
+  <dependencies>
+            <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${springframework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${springframework.version}</version>
+        </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
+
+
+---------------------
+Spring 
+	Java beans	=	any reusable piece of code (component) developed in java 
+	is an easy implementation of EJB 		Enterprise JavaBeans
+	ejb = java beans + services	
+	Services:
+	i) Generic services
+	ii) Application specific services
+
+	generic services are provided by container.
+	container is a special JVM
+
+	generic services:
+		life cycle management of beans
+		security
+		transaction management
+		
+in spring, we are NOT CREATING objects of BEAN
+	Employee bharath=new Employee();	//POOR PRACTICE
+	Then? how will i get object of Employee???
+	ctx.getBean(Employee.class);		//in Spring
+
+	from instance pool
+
+Demo:
+1) Create a maven project '1-nov-2'
+2) add dependencies in pom.xml
+	spring core
+	spring context
+3) Lets create a bean
+	Mathematics.java
+		int no1;
+		int no2;
+		sum()
+		product()
+
+4) in App.java
+	get bean from spring
+		call methods like		sum() 	and product()
+
+package org.mcet.demo;
+
+public class Mathematics {
+	private Integer no1;
+	private Integer no2;
+	private Integer result;
+	
+	public Mathematics() {}
+
+	public Mathematics(Integer no1, Integer no2, Integer result) {
+		super();
+		this.no1 = no1;
+		this.no2 = no2;
+		this.result = result;
+	}
+
+	public Integer getNo1() {
+		return no1;
+	}
+
+	public void setNo1(Integer no1) {
+		this.no1 = no1;
+	}
+
+	public Integer getNo2() {
+		return no2;
+	}
+
+	public void setNo2(Integer no2) {
+		this.no2 = no2;
+	}
+
+	public Integer getResult() {
+		return result;
+	}
+
+	public void setResult(Integer result) {
+		this.result = result;
+	}
+	
+	public void sum()
+	{
+		result=no1+no2;
+	}
+	
+	public void product()
+	{
+		result=no1*no2;
+	}
+}
+
+5) Lets create a spring configuration file
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="maths" class="org.mcet.demo.Mathematics">
+		<property name="no1" value="5" />
+		<property name="no2" value="4" />
+	</bean>
+
+</beans>
+
+
+5) App.java
+
+package org.mcet.demo;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
+//        Mathematics m1=new Mathematics();
+//        m1.setNo1(2);
+//        m1.setNo2(3);
+//        m1.sum();
+//        System.out.println(m1.getResult());
+        
+        ClassPathXmlApplicationContext ctx=new ClassPathXmlApplicationContext("spring.xml");
+        Mathematics m2 = ctx.getBean(Mathematics.class);
+//        m2.product();
+        m2.sum();
+        System.out.println(m2.getResult());
+    }
+}
+
+
+------------------------------------
+Composition relationship between classes?
+
+class Car
+{
+	Engine e;
+}
+
+Aggregation relationship?????
+
+class Book
+{
+	Author a;
+}
+
+Author a1=new Author();
+Book b1=new Book();
+
+how can we inject, Author inside the Book?
+
+-------------------------------
+Dependency Injection
+	
+
+Book
+	Author
+
+there are 2 ways we can inject author into a book.
+	i) using constructor
+	ii) using setter
+
+constructor:
+	Author a1=new Author(.......
+	Book b1=new Book(1,"You can win", a1);
+
+setter:
+	Author a1=new Author(.......
+	Book b1=new Book();
+	b1.setId(1);
+	b1.setTitle("You can win");
+	b1.setAuthor(a1);
+
+
+Autowiring:
+	what is autowiring?
+	
+
+in xml:
+	<bean id=		class=>
+	</bean>
+in annotations:
+	@Component
+	@Bean
+
+@Component
+	is used above a class.
+	when you mark a class as a bean
+		
+@Bean		(in configuration)
+	is used above a method
+
+	@Bean
+	public HibernateTemplate ht()
+	{
+		return new HibernateTemplate();
+	}
+
+
+
+Example (for annotation based configuration)
+----------------------------------------
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.mcet.demo</groupId>
+	<artifactId>01-nov-3</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>01-nov-3</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		 <dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context</artifactId>
+    <version>5.2.7.RELEASE</version>
+</dependency>
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context-support</artifactId>
+    <version>5.2.7.RELEASE</version>
+</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>
+
+
+-------------------------------------
+package org.mcet.demo;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan(basePackages = {"org.mcet"})
+public class MyConfiguration {
+	
+	@Bean
+	public Author author()
+	{
+		return new Author(1, "Bala", "Guruswamy");
+	}
+}
+
+
+
+----------------------------
+package org.mcet.demo;
+
+
+
+public class Author {
+	private Integer id;
+	private String firstName;
+	private String lastName;
+	
+	public Author() {}
+	public Author(Integer id, String firstName, String lastName) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	@Override
+	public String toString() {
+		return "Author [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+	}
+	
+}
+
+
+
+---------------------------
+package org.mcet.demo;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class Book {
+	private Integer id;
+	private String title;
+	@Autowired
+	private Author author;
+	
+	public Book() {}
+
+	public Book(Integer id, String title, Author author) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.author = author;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public Author getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Author author) {
+		this.author = author;
+	}
+
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", title=" + title + ", author=" + author + "]";
+	}
+	
+}
+
+
+
+---------------------------------
+package org.mcet.demo;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
+        AnnotationConfigApplicationContext ctx=new AnnotationConfigApplicationContext(MyConfiguration.class);
+//        ctx.scan("org.mcet");
+//        ctx.refresh();
+        Book b=ctx.getBean(Book.class);
+        System.out.println(b);
+    }
+}
+
+-------------------------------------------------------
+Task:
+Create the following classes and configure them as beans using Annotation
+class: Address	(id, street, city)
+class: Customer	(id, name, address)
+
+
+
