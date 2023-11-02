@@ -111,11 +111,47 @@ public class MyController {
 	}
 }
 
-
+Task:
+create a rest controller class and restart the project. check the output in:
 
 http://localhost:8081/
+
 DispatcherServlet
 
 MVC
 
 HTTP methods
+	GET
+	POST
+	PUT
+	DELETE
+	PATCH
+
+the above are HTTP methods
+
+GET		read in CRUD
+	whenever you type an URL in the address bar of the browser, you are accesing that URL using GET method only.
+
+	is used when you want to "retrieve" data from the server.
+
+POST		create in CRUD
+	is used for adding a new resource
+
+PUT		update in CRUD
+	is used for updating existing entire resource
+
+DELETE		delete in CRUD
+	is used for removing a resource
+
+PATCH	
+	is used to update partially
+
+
+Task:
+	create the methods for 
+		GET
+		POST
+		PUT
+		DELETE
+
+and test them in POSTMAN
