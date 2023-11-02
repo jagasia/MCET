@@ -1,4 +1,4 @@
-package org.mcet.demo;
+package org.mcet.demo.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,20 +6,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Employee {
+public class Department {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String name;
-	private String department;
 	
-	public Employee() {}
+	public Department() {}
 
-	public Employee(Integer id, String name, String department) {
+	public Department(Integer id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.department = department;
 	}
 
 	public Integer getId() {
@@ -38,18 +36,9 @@ public class Employee {
 		this.name = name;
 	}
 
-	public String getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(String department) {
-		this.department = department;
-	}
-
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", department=" + department + "]";
+		return "Department [id=" + id + ", name=" + name + "]";
 	}
 	
-
 }

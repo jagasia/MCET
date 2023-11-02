@@ -826,3 +826,284 @@ Task:
 	DepartmentDao.java		(dao)
 	test it in App.java
 
+------------------------------------------------------------------
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>5.2.7.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>5.2.7.RELEASE</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.47</version>
+			<!-- <version>8.0.23</version> -->
+
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>5.2.7.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.2.2.Final</version>
+		</dependency>
+
+
+-----------------------------------------------
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context.xsd">
+	<!-- <context:component-scan base-package="model" /> -->
+
+	<tx:annotation-driven transaction-manager="hibernateTransactionManager"/>
+
+
+	<bean id="ds"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/mcet" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="ds" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+		<property name="annotatedClasses">
+			<list>
+				<value>org.mcet.demo.Employee</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="ht"
+		class="org.springframework.orm.hibernate5.HibernateTemplate">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="edao" class="org.mcet.demo.EmployeeDao">
+		<property name="ht" ref="ht"></property>
+	</bean>
+	<bean id="hibernateTransactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+</beans>
+
+package org.mcet.demo;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class Employee {
+	@Id
+	private Integer id;
+	private String name;
+	private String department;
+	
+	public Employee() {}
+
+	public Employee(Integer id, String name, String department) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.department = department;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + ", department=" + department + "]";
+	}
+	
+
+}
+
+
+
+
+
+
+
+
+package org.mcet.demo;
+
+import java.util.List;
+
+import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.transaction.annotation.Transactional;
+
+public class EmployeeDao {
+	
+	private HibernateTemplate ht;
+	
+	
+	public void setHt(HibernateTemplate ht) {
+		this.ht = ht;
+	}
+
+	@Transactional
+	public void create(Employee employee) {
+		//adding a new row in EMPLOYEE table
+		ht.save(employee);
+	}
+	
+	public List<Employee> read() {
+		return ht.loadAll(Employee.class);
+	}
+	
+	public Employee read(Integer id) {
+		return ht.get(Employee.class, id);
+	}
+	
+	@Transactional
+	public void update(Employee employee) {
+		Employee temp = read(employee.getId());
+		if(temp!=null)
+		{
+			temp.setName(employee.getName());
+			temp.setDepartment(employee.getDepartment());
+			ht.update(temp);
+		}		
+	}
+	
+	@Transactional
+	public void delete(Integer id) {
+		Employee temp = read(id);
+		if(temp!=null)
+		{
+			ht.delete(temp);
+		}
+	}
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+package org.mcet.demo;
+
+import java.util.List;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+    	ClassPathXmlApplicationContext ctx=new ClassPathXmlApplicationContext("spring.xml");
+    	EmployeeDao edao= (EmployeeDao) ctx.getBean("edao");
+    	Employee e=new Employee(3, "Prasad", "IT");
+//    	edao.create(e);
+    	
+//    	edao.update(e);
+    	
+    	edao.delete(2);
+    	
+    	List<Employee> employeeList = edao.read();
+    	for(Employee emp: employeeList)
+    		System.out.println(emp);
+
+//    	Employee result = edao.read(13);
+    	
+    	
+    	System.out.println( "Hello World!" );
+        
+    }
+}
+
+
+-----------------------------------
+Spring boot
+	what is spring boot?
+		bootstrapping a project
+		we do not create the project from the scratch.
+		we download project from the spring initializr
+		
+Spring Initializr
+	start.spring.io
+
+Difference between Spring and Spring boot:
+	1) zero xml configuration
+	2) works on Spring layer
+	3) Convention over configuration	(if you follow convention, you do not need to configure)
+	4) in pom.xml, we dont need to add log of dependencies, because they are combined together as starters
+	5) internal apache tomcat server
+
+1) Spring MVC project
+2) Spring RESTful webservices		/	REST api
+in both of these, we can use JpaRepository for database part.	(this is a kind of JPA f/w like hibernate)
+
+project git link:
+https://github.com/jagasia/employee-boot
+
+DispatcherServlet
+
+MVC
+

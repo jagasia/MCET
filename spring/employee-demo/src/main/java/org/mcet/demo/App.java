@@ -14,12 +14,12 @@ public class App
     {
     	ClassPathXmlApplicationContext ctx=new ClassPathXmlApplicationContext("spring.xml");
     	EmployeeDao edao= (EmployeeDao) ctx.getBean("edao");
-    	Employee e=new Employee(3, "Prasad", "IT");
-//    	edao.create(e);
+    	Employee e=new Employee(null, "Suresh", "MBA");
+    	edao.create(e);
     	
 //    	edao.update(e);
     	
-    	edao.delete(2);
+//    	edao.delete(2);
     	
     	List<Employee> employeeList = edao.read();
     	for(Employee emp: employeeList)

@@ -1,0 +1,86 @@
+Sprint Boot - 2
+Restful Webservices:
+----------------------------
+Do you remember, in javascript, we created JSON string from object and vice versa.
+
+Means, a html page can be converted into an object JSON and sent to back end.
+the backend receives the JSON and do the needful (insert/update/delete/etc)
+So you understand that our restful webservice /rest api should be able to 
+	receive JSON and store it in the database
+	receive JSON and update data in the database
+	return JSON when they want all records 
+	return JSON when they find a record by id
+	or any other specific requirements.
+
+What is a webservice?
+	from 2001 onwards, this webservice concept evolved.
+	Why it was introduced?
+		The need for interoperability.
+	what is interoperability?
+		The ability to access programs from anywhere anytime from any platform
+		ex:	a program created in c#. How can we call that program from 			java?
+		why should we call?	
+		consider RedBus.com
+			this redbus application is able to access many travels database
+			travels: KPN travels, YBM travels, Hindustan travels
+			several travels have their own database.
+
+			redbus application is allowed to access KPN travels database.
+			BUT NOT DIRECTLY.
+
+			redbus is allowed to access a program that KPN travels provide.
+			that program is the webservice.
+
+	2001, SOAP webservices were introduced
+		Simple Object Access Protocol
+		used XML format
+
+	RESTful webservices		REpresentational State Transfer
+		support	XML, JSON, text, HTML and many formats
+		are stateless	every request is independent
+		every method has separate URL
+
+Spring boot RESTful webservice		/ 	REST api
+	is very simple technique to create webservices.
+
+1) example
+	without database
+2) example	
+	with databse	
+
+Demo:
+1) create a spring boot project
+	from spring initializr
+	group id: org.mcet.demo
+	artifact id: karthick
+	maven
+	java
+	2.7.17
+	jar
+
+	Spring web
+2) download, unzip
+3) copy the folder to your workspace
+4) import "existing maven projects"
+5) run the project
+
+Problem:
+	port 8080 already in use.
+
+	to change the port number, go to		"src/main/resource"
+	application.properties
+
+		server.port=8081
+
+
+
+
+
+
+
+
+DispatcherServlet
+
+MVC
+
+
