@@ -699,3 +699,39 @@ check localhost:5000
 4) controller class
 	mappings
 5) run the project
+
+Task:
+Create your first MVC project and jsp should display welcome message
+
+You have created mvc project and there is "index".jsp that displays welcome message.
+
+now, we shall have multiple jsp files. All urls we enter in browser/ hyperlink referes to the method urls only.
+
+package org.mcet.demo.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Controller
+public class MyController {
+
+	@GetMapping
+	public String home()
+	{
+		return "index";
+	}
+	
+	@GetMapping("/about")
+	public String aboutus()
+	{
+		return "aboutus";
+	}
+	
+	@GetMapping("/contact")
+	@ResponseBody
+	public String contactus()
+	{
+		return "contact.";
+	}
+}

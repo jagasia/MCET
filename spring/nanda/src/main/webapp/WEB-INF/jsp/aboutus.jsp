@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-Hello welcome to my mvc project<br/>
-<a href="/about">About us</a>
+This page is about us. ......
 </body>
 </html>
