@@ -343,3 +343,198 @@ public class ProductController {
 
 Task:
 Create a rest controller for Customer and test it in postman.
+
+
+JSON format:	{	"key1":"value1",	"key2":"value2"	}
+	{"id":"2","name":"Pen","price":"20.0"}
+---------------------------
+Introducing JPA repository
+	kind of CRUD repository
+	
+we are using the hibernate knowledge 
+
+@Entity		a class marked as entity, becomes table in db	
+@Table		to specify the table name	(esp when table name different from classname)
+@Id		to mark a field as PRIMARY KEY
+@GeneratedValue	to specify auto generation strategy
+@Column		to specify the column name.	If not specified, then field name becomes column name
+
+final = constant = full capital
+SET_MAX_AGE
+MIN_PRIORITY
+
+
+@Entity
+@Table(name="PROD")	
+public class RetailProduct		RETAIL_PRODUCT
+{
+}
+
+
+strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+Steps for jpa:
+1) create a spring boot project from spring initializr
+	spring web
+	spring data jpa
+	mysql driver
+2) application.properties
+spring.datasource.url=jdbc:mysql://localhost:3306/mcet
+spring.datasource.username=root
+spring.datasource.password=
+
+#spring.datasource.hikari.connection-timeout=20000
+#spring.datasource.hikari.minimum-idle=5
+#spring.datasource.hikari.maximum-pool-size=12
+#spring.datasource.hikari.idle-timeout=300000
+#spring.datasource.hikari.max-lifetime=1200000
+
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL8Dialect
+spring.jpa.properties.hibernate.id.new_generator_mappings = false
+spring.jpa.properties.hibernate.show_sql = true
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+logging.level.org.hibernate.SQL=DEBUG
+logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
+
+
+3) entity class
+package org.mcet.demo.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Product {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	private String name;
+	private Double price;
+	
+	public Product() {}
+
+	public Product(Integer id, String name, Double price) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", price=" + price + "]";
+	}
+	
+}
+
+4) repository interface
+package org.mcet.demo.repository;
+
+import org.mcet.demo.entity.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ProductRepository extends JpaRepository<Product, Integer>
+{
+
+}
+
+4.5) service layer		//lets add this layer in next demos
+
+5) controller
+package org.mcet.demo.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.mcet.demo.entity.Product;
+import org.mcet.demo.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/product")
+public class ProductController {
+	@Autowired
+	private ProductRepository pr;
+	
+	@PostMapping
+	public Product create(@RequestBody Product product) {
+		return pr.save(product);
+	}
+	
+	@GetMapping
+	public List<Product> read() {
+		return pr.findAll();
+	}
+	
+	@GetMapping("/{id}")
+	public Product read(@PathVariable("id") Integer id) {
+		Optional<Product> temp = pr.findById(id);
+		Product p=null;
+		if(temp.isPresent())
+		{
+			p=temp.get();
+		}
+		return p;
+	}
+	
+	@PutMapping
+	public Product update(@RequestBody Product product) {
+		Product p = read(product.getId());
+		if(p!=null)
+		{
+			pr.save(product);
+		}
+		return p;
+	}
+	
+	@DeleteMapping("/{id}")
+	public Product delete(@PathVariable("id") Integer id) {
+		Product p = read(id);
+		if(p!=null)
+		{
+			pr.delete(p);
+		}
+		return p;
+	}
+	
+}
+
+
+--------------------------
