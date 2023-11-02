@@ -735,3 +735,21 @@ public class MyController {
 		return "contact.";
 	}
 }
+---------------------------------
+Product CRUD mvc
+1) create a spring boot application using spring initializr
+
+"Path with "WEB-INF" or "META-INF": [WEB-INF/jsp/index.jsp]"
+
+solution:
+add apache tomcat dependency
+
+
+
+Jpa query language
+Jpa relationships
+how to access rest api from mvc project
+
+code:
+https://github.com/jagasia/mcet/saran
+
