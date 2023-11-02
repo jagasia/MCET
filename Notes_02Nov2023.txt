@@ -538,3 +538,7 @@ public class ProductController {
 
 
 --------------------------
+Task:
+create a rest ful webservice with jpa repository and mysql driver
+and create entity: Customer
+test all CRUD in postman
