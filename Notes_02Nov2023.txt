@@ -341,3 +341,5 @@ public class ProductController {
 	
 }
 
+Task:
+Create a rest controller for Customer and test it in postman.
