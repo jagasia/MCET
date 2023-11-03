@@ -198,3 +198,8 @@ In Login page 	mention a link	"New users, click here to signup"
 
 In Sign up page,	mention a link	"Existing users, click here to login"
 
+-----------------------------------------
+After the signup is successful, Display a success message.
+After login is successful, Welcome the user by their name.
+Signed in user only allowed to visit "product" page. 
+	Others see message "You have not logged in. Click here to go to login page"
