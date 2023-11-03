@@ -199,6 +199,12 @@ In Login page 	mention a link	"New users, click here to signup"
 In Sign up page,	mention a link	"Existing users, click here to login"
 
 -----------------------------------------
+Signup for to have validations:
+	i) Password and Confirm password must match
+	ii) username / password cannot be blank
+	iii) email address format
+	iv) Phone number must be 10 digit number
+validations in HTML5, Js, Hibernate validators
 After the signup is successful, Display a success message.
 After login is successful, Welcome the user by their name.
 Signed in user only allowed to visit "product" page. 
