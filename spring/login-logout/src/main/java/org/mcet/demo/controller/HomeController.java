@@ -31,6 +31,24 @@ public class HomeController {
 	@Autowired
 	private ProductRepository pr;
 	
+	@GetMapping("/showFind")
+	public String showFind()
+	{
+		return "name";
+	}
+
+	@GetMapping("/find")
+	public ModelAndView find(@RequestParam("name")String name)
+	{
+		List<Product> products = pr.findProductsByName(name);
+//		List<Product> products = pr.findByName(name);
+//		List<Product> products = pr.findAll();
+		ModelAndView mv=new ModelAndView();
+		mv.setViewName("index");
+		mv.addObject("product", new Product());
+		mv.addObject("products", products);
+		return mv;
+	}
 	@GetMapping
 	public ModelAndView home()
 	{

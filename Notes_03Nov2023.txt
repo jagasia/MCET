@@ -178,6 +178,32 @@ org.apache.tomcat.util.http.fileupload.impl.FileSizeLimitExceededException: The 
 Solution:	in mysql:
 SET GLOBAL max_allowed_packet=1073741824;
 ----------------------------------
+
+----------------
+Hibernate Query Language/JPAQL
+What is the need for HQL?
+	for most of the common requirements, we don't need to write SQL statements.	
+	But for specific conditions, sorting, etc, we need to write queries.
+
+1) finder methods
+	findAll()
+	findById()
+	findByName		can add it in repository
+	findByPrice		can add it in repository
+
+
+2) other than these, we can write queries
+
+we are not writing SQL statements here.
+we write HQL/JPAQL
+
+select p from Product p;
+
+what is Product		it is the Entity class name 	NOT TABLE NAME
+
+we can also write SQL statements, when we mention that native is true
+
+
 Task:
 Create signup.jsp
 the user should fill the details to signup /register themselves as an user.
