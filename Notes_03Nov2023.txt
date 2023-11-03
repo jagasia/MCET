@@ -1,9 +1,9 @@
 Hibernate 1:
 
-image of the product
-Select using spring boot forms
-Hibernate Validations
-Hibernate/ Jpa query language
+image of the product			DONE
+Select using spring boot forms		DONE
+Hibernate Validations		DONE
+Hibernate/ Jpa query language	
 Jpa relationships
 how to access rest api from mvc project
 
@@ -153,9 +153,48 @@ What is a spring form?
 
 5) in controller, validate
 
+	@RequestMapping(value = "/btn", method = RequestMethod.POST, params = "add" )
+	public ModelAndView add(@Valid @ModelAttribute("product") Product product, BindingResult br)
+	{
+		if(br.hasErrors())
+		{
+			List<Product> products = pr.findAll();
+			ModelAndView mv=new ModelAndView();
+			mv.setViewName("index");
+			mv.addObject("product", product);
+			mv.addObject("products", products);
+			return mv;			
+		}else
+		{
+			pr.save(product);
+		}
+		return home();
+	}
 
 
 Problem:
 org.apache.tomcat.util.http.fileupload.impl.FileSizeLimitExceededException: The field pic exceeds its maximum permitted size of 1048576 bytes.
 
-Solution:
+Solution:	in mysql:
+SET GLOBAL max_allowed_packet=1073741824;
+----------------------------------
+Task:
+Create signup.jsp
+the user should fill the details to signup /register themselves as an user.
+After signup is successful, (a row should have been added to the USER_MASTER table)
+	entity class name: User		table name: USER_MASTER
+
+@Entity
+@Table(name="USER_MASTER")
+public class User
+{
+..................
+}
+They should be able to login
+	login.jsp
+
+In home page, provide hyperlink to "signup" or "login"
+In Login page 	mention a link	"New users, click here to signup"
+
+In Sign up page,	mention a link	"Existing users, click here to login"
+
