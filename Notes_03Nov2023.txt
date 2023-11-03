@@ -238,3 +238,8 @@ Signed in user only allowed to visit "product" page.
 
 https://github.com/jagasia/mcet-starter
 
+Pending tasks:
+1) on submitting the signup form, the user must be created
+2) login form must be submitted to controller and status of login should be checked
+3) the menu bar to Welcome the logged in user or 
+if login failed, show failure message in the login page itself
