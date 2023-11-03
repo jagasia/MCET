@@ -111,3 +111,51 @@ to convert byte[] to Base64String
 
 Task:
 implement image in your entity and test it.
+-----------------------------------------------------
+1) Spring form validations
+	hibernate validators
+
+Entity class itself to have rules tha much be satisfied in order to add / update entity
+name cannot be blank		<input type="text" required />
+name must be atleast 5 characters	
+
+will validate the entity object
+
+What is a spring form?
+	Spring treats a FORM as an object
+		ModelAttribute
+
+1) in pom.xml, add the hibernate validator dependency
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.0.13.Final</version>
+		</dependency>
+2) add the spring form tablib
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+3) change the form as:
+     <form:form method="post" action="/btn">
+     	Id: <form:input path="id" type="number" class="form-control" />
+     	Name: <form:input path="name" type="text" name="name" class="form-control" />
+     	Price: <form:input path="price" type="number" name="price" class="form-control" />     	
+     	<br/>
+     	<input type="submit" name="add" value="Add" class="btn btn-success" />
+     	<input type="submit" name="update" value="Update" class="btn btn-warning" />
+     	<input type="submit" name="delete" value="Delete" class="btn btn-danger" />
+     	
+     </form:form>
+4) Entity class to have rule
+	name must be atleast 5 characters
+	price must be >0
+
+	@Size(min = 5,message = "Name must be atleast 5 letters")
+	private String name;
+
+5) in controller, validate
+
+
+
+Problem:
+org.apache.tomcat.util.http.fileupload.impl.FileSizeLimitExceededException: The field pic exceeds its maximum permitted size of 1048576 bytes.
+
+Solution:
