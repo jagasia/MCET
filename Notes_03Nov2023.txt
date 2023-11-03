@@ -243,3 +243,13 @@ Pending tasks:
 2) login form must be submitted to controller and status of login should be checked
 3) the menu bar to Welcome the logged in user or 
 if login failed, show failure message in the login page itself
+
+Hint for login validation:
+in controller,
+	find user by username		findById method
+	if no user found, "Login failed"
+	if found user object has a password, different from user entere pwd, "Login failed"
+	otherwise, login is successful. Store the user object in HttpSession and redirect to home page
+	Menu bar should check if session attribute "user" is present. not equal to null
+	and display Welcome <<user's name>> and show "logout" option
+	else show "login" option
