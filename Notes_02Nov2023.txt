@@ -753,3 +753,9 @@ how to access rest api from mvc project
 code:
 https://github.com/jagasia/mcet/saran
 
+
+
+Select using spring boot forms
+Hibernate Validations
+Hibernate query language
+Relationships

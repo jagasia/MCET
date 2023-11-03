@@ -1,3 +1,18 @@
+Hibernate 1:
+
+image of the product
+Select using spring boot forms
+Hibernate Validations
+Hibernate/ Jpa query language
+Jpa relationships
+how to access rest api from mvc project
+
+Entity class: Product
+	id
+	name
+	price
+	pic
+
 package org.mcet.demo.entity;
 
 import java.util.Arrays;
@@ -7,8 +22,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-
-import org.apache.tomcat.util.codec.binary.Base64;
 
 @Entity
 public class Product {
@@ -67,12 +80,6 @@ public class Product {
 	public byte[] getPic() {
 		return pic;
 	}
-	
-	public String getPic1()
-	{
-		//converts byte[] into Base64 String
-		return Base64.encodeBase64String(pic);
-	}
 
 	public void setPic(byte[] pic) {
 		this.pic = pic;
@@ -86,3 +93,21 @@ public class Product {
 
 	
 }
+
+----------------------------
+in controller
+@MultipartConfig
+on the class
+
+to convert byte[] to Base64String
+
+<dependency>
+    <groupId>commons-io</groupId>
+    <artifactId>commons-io</artifactId>
+    <version>2.11.0</version>
+</dependency>
+
+
+
+Task:
+implement image in your entity and test it.
