@@ -759,3 +759,6 @@ Select using spring boot forms
 Hibernate Validations
 Hibernate query language
 Relationships
+
+
+https://youtu.be/mP_1k-DaGys?si=XDJqfyNX9KQcZV5U
