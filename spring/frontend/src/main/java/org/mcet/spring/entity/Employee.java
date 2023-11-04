@@ -40,10 +40,7 @@ public class Employee {
 		this.department = department;
 	}
 
-	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", department=" + department + "]";
-	}
+	
 	
 	
 }

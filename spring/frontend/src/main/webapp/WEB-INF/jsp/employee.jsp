@@ -28,6 +28,20 @@
 			</div>
 			<div class="col-sm-4">
 				<h3>Employee page</h3>
+				<form method="post" action="/employee/dml">
+				Id:<input type="number" name="id" class="form-control" />
+				Name:<input type="text" name="name" class="form-control" />
+				Department:<select name="departmentId">
+					<option value="">Choose...</option>					
+					<c:forEach var="d" items="${departments }">
+						<option value="${d.id }">${d.name }</option>
+					</c:forEach>
+				</select>
+				<br/>
+				<input type="submit" value="Add" name="add" class="btn btn-success" />&nbsp;
+					<input type="submit" value="Update" name="update" class="btn btn-warning" />&nbsp;
+					<input type="submit" value="Delete" name="delete" class="btn btn-danger" />&nbsp;
+				</form>
 			</div>
 			<div class="col-sm-4">
 				<h3>Column 3</h3>
@@ -37,6 +51,8 @@
 			</div>
 		</div>
 	</div>
+	<br/>
+	<hr/>
 	<div class="row">
 		<div class="col-sm-2"></div>
 		<div class="col-sm-8">
@@ -44,13 +60,18 @@
 				<thead>
 					<th>Id</th>
 					<th>Name</th>
-					<th>Price</th>
-					<th></th>
-					<th></th>
+					<th>Department</th>
 					<th></th>
 				</thead>
 				<tbody>
-
+					<c:forEach var="e" items="${employees }">
+						<tr>
+							<td>${e.id }</td>
+							<td>${e.name }</td>
+							<td>${e.department.name }</td>
+							<td></td>							
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>

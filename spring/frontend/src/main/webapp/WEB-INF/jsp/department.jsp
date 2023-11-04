@@ -28,7 +28,7 @@
 			</div>
 			<div class="col-sm-4">
 				<h3>Department page</h3>
-				<form:form modelAttribute="department">
+				<form:form modelAttribute="department" method="post" action="/department/dml">
 					Id:<form:input path="id" class="form-control" />
 					Name:<form:input path="name" class="form-control" />
 					<br/>
@@ -45,6 +45,7 @@
 			</div>
 		</div>
 	</div>
+	<br/><hr/>
 	<div class="row">
 		<div class="col-sm-2"></div>
 		<div class="col-sm-8">
@@ -53,13 +54,19 @@
 					<th>Id</th>
 					<th>Name</th>
 					<th></th>
+					<th></th>
 				</thead>
 				<tbody>
 					<c:forEach var="d" items="${departments }">
 						<tr>
 							<td>${d.id }</td>
 							<td>${d.name }
-							<td></td>
+							<td>
+								<a class="btn btn-info" href="/department/select?id=${d.id }">Select</a>
+							</td>
+							<td>
+								<a class="btn btn-primary" href="/department/view/${d.id}">View</a>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>

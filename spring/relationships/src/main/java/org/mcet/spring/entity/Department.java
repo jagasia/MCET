@@ -3,6 +3,7 @@ package org.mcet.spring.entity;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +17,7 @@ public class Department {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String name;	
+	@JsonIgnore
 	@OneToMany(mappedBy = "department")	
 	private List<Employee> employees;
 	
@@ -52,10 +54,7 @@ public class Department {
 		this.employees = employees;
 	}
 
-	@Override
-	public String toString() {
-		return "Department [id=" + id + ", name=" + name+ "]";
-	}
+	
 	
 	
 }

@@ -4,8 +4,8 @@ image of the product			DONE
 Select using spring boot forms		DONE
 Hibernate Validations		DONE
 Hibernate/ Jpa query language		DONE
-Jpa relationships
-how to access rest api from mvc project
+Jpa relationships			DONE
+how to access rest api from mvc project	DONE
 
 Hibernate/ Jpa Query Language:
 	query the Entities (not the tables)
@@ -480,3 +480,4 @@ public interface DepartmentApi {
 https://github.com/jagasia/mcet-dept
 	unzip and properly import both projects
 
+--------------------------------------------

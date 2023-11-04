@@ -12,7 +12,6 @@ public class Employee {
 	private Integer id;
 	private String name;
 	@ManyToOne
-	@JsonIgnore
 	private Department department;
 	
 	public Employee() {}
@@ -48,10 +47,7 @@ public class Employee {
 		this.department = department;
 	}
 
-	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", department=" + department + "]";
-	}
+	
 	
 	
 }
