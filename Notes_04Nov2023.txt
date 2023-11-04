@@ -1,0 +1,373 @@
+Hibernate 2:
+
+image of the product			DONE
+Select using spring boot forms		DONE
+Hibernate Validations		DONE
+Hibernate/ Jpa query language		DONE
+Jpa relationships
+how to access rest api from mvc project
+
+Hibernate/ Jpa Query Language:
+	query the Entities (not the tables)
+	but when we use nativeQuery we are mentioning the table names. And all sql 	syntax, functions, can be used.
+
+Hibernate Relationships:
+1) primary key can be composite
+2) there can be only 1 primary key in a table. But that primary key can be composite
+3) foreign key references primary key (or UNIQUE+NOT NULL)
+4) foreign key allows NULL, allows Duplicates
+
+Hibernate relationship:
+------------------------------
+Do you notice, that in jpa repository/ hibernate method,
+we are not creating the tables. We create entity classes, and on running the project,
+the tables are created by Hibernate/jpa
+How do you define primary key?		using @Id annotation
+So, how do we define foregin key?
+
+Introduce relationship between entities.
+
+Car has Audio
+Book has Author
+
+
+
+Defining relationship includes identifying the multiplicity of relationship
+
+One to One
+One to Many
+Many to One
+Many to Many
+
+Employee and Department	is 	Many to One
+Department and Employee	is	One to Many
+
+1 will join M
+
+EMPLOYEE table
+id	fname	lname	department_id
+
+DEPARTMENT table
+id 	name	location	
+
+class Employee
+{
+	id
+	name
+	Department department;		//not departmentId
+
+
+
+class Deparment
+{
+	id
+	name
+		EAGER/LAZY
+	List<Employee> employees;
+
+Demo:
+1) create a spring boot application using spring initializr
+2) dependencies:
+	spring web
+	spring data jpa
+	mysql driver		(i removed scope runtime)
+3) entities:
+package org.mcet.spring.entity;
+
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
+public class Department {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	private String name;	
+	@OneToMany(mappedBy = "department")	
+	private List<Employee> employees;
+	
+	public Department() {}
+
+	public Department(Integer id, String name, List<Employee> employees) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.employees = employees;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Employee> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
+	}
+
+	@Override
+	public String toString() {
+		return "Department [id=" + id + ", name=" + name+ "]";
+	}
+	
+	
+}
+
+
+
+
+
+
+package org.mcet.spring.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
+public class Employee {
+	@Id
+	private Integer id;
+	private String name;
+	@ManyToOne
+	@JsonIgnore
+	private Department department;
+	
+	public Employee() {}
+
+	public Employee(Integer id, String name, Department department) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.department = department;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + ", department=" + department + "]";
+	}
+	
+	
+}
+
+
+4) repositories
+package org.mcet.spring.repository;
+
+import org.mcet.spring.entity.Department;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface DepartmentRepository extends JpaRepository<Department, Integer>
+{
+
+}
+
+
+package org.mcet.spring.repository;
+
+import org.mcet.spring.entity.Employee;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface EmployeeRepository extends JpaRepository<Employee, Integer>
+{
+
+}
+
+
+5) 
+package org.mcet.spring.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.mcet.spring.entity.Department;
+import org.mcet.spring.repository.DepartmentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("department")
+public class DepartmentController {
+	@Autowired
+	private DepartmentRepository dr;
+	
+	@PostMapping
+	public Department create(@RequestBody Department department) {
+		return dr.save(department);
+	}
+	
+	@GetMapping
+	public List<Department> read() {
+		return dr.findAll();
+	}
+	
+	@GetMapping("/{id}")
+	public Department read(@PathVariable("id") Integer id) {
+		Optional<Department> temp = dr.findById(id);
+		Department d=null;
+		if(temp.isPresent())
+		{
+			d=temp.get();
+		}
+		return d;
+	}
+		
+	
+	@PutMapping
+	public Department update(@RequestBody Department department) {
+		Optional<Department> temp = dr.findById(department.getId());
+		Department d=null;
+		if(temp.isPresent())
+		{
+			d=department;
+			dr.save(d);
+		}
+		return d;
+	}
+	
+	@DeleteMapping("/{id}")
+	public Department delete(@PathVariable("id") Integer id) {
+		Optional<Department> temp = dr.findById(id);
+		Department d=null;
+		if(temp.isPresent())
+		{
+			d=temp.get();
+			dr.delete(d);
+		}
+		return d;
+	}
+	
+}
+
+
+
+package org.mcet.spring.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.mcet.spring.entity.Employee;
+import org.mcet.spring.repository.EmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("employee")
+public class EmployeeController {
+	@Autowired
+	private EmployeeRepository er;
+	
+	@PostMapping
+	public Employee create(@RequestBody Employee employee) {
+		return er.save(employee);
+	}
+	
+	@GetMapping
+	public List<Employee> read() {
+		return er.findAll();
+	}
+	
+	@GetMapping("/{id}")
+	public Employee read(@PathVariable("id") Integer id) {
+		Optional<Employee> temp = er.findById(id);
+		Employee d=null;
+		if(temp.isPresent())
+		{
+			d=temp.get();
+		}
+		return d;
+	}
+		
+	
+	@PutMapping
+	public Employee update(@RequestBody Employee employee) {
+		Optional<Employee> temp = er.findById(employee.getId());
+		Employee d=null;
+		if(temp.isPresent())
+		{
+			d=employee;
+			er.save(d);
+		}
+		return d;
+	}
+	
+	@DeleteMapping("/{id}")
+	public Employee delete(@PathVariable("id") Integer id) {
+		Optional<Employee> temp = er.findById(id);
+		Employee d=null;
+		if(temp.isPresent())
+		{
+			d=temp.get();
+			er.delete(d);
+		}
+		return d;
+	}
+	
+}
+
+
