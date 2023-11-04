@@ -371,3 +371,112 @@ public class EmployeeController {
 }
 
 
+Task:
+Create a separate spring boot MVC project with following jsp files:
+employee.jsp
+department.jsp
+
+both pages are CRUD to add/update/delete/find/select departments/employees
+
+-------------------------------------------------------------------------
+First we create RESTful webservices
+suppose we make payment in an app 	Swiggy app
+	payment options are 
+		UPI
+		credit card
+		debit card
+		net banking
+		lazy pay
+
+if one of the services is down, still the application continue to function.
+That is the advantage of microservices.
+
+Yesterday, we created a MVC project
+	entity
+	repository
+	controller
+	jsp
+
+Today, we are splitting this into 2
+	entity
+	repository
+	rest controller
+
+next part is mvc project
+	jsp
+	controller
+
+--------------------
+Lets create MVC project
+we have created mvc project with 
+	employee.jsp
+	department.jsp
+
+now, 
+how mvc can access rest api by URL?
+	i) Feign Client
+	ii) RestTemplate
+
+Feign Client
+	1) add open feign dependency
+	2) in Application.java or configuration class, @EnableFeignClient
+	3) create an interface that is annotated by @FeignClient
+	4) autowire this interface in the controller
+
+after that, we can just use this interface methods just like in local project
+
+1) 
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+
+2)
+
+@SpringBootApplication
+@EnableFeignClients
+public class FrontendApplication {
+
+3) 
+package org.mcet.spring.api;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.mcet.spring.entity.Department;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+@FeignClient(path = "http://localhost:5000/department")
+public interface DepartmentApi {
+
+	@PostMapping
+	public Department create(@RequestBody Department department);
+	
+	@GetMapping
+	public List<Department> read();
+	
+	@GetMapping("/{id}")
+	public Department read(@PathVariable("id") Integer id);
+		
+	
+	@PutMapping
+	public Department update(@RequestBody Department department);
+		
+	
+	@DeleteMapping("/{id}")
+	public Department delete(@PathVariable("id") Integer id);
+}
+
+
+
+
+
+https://github.com/jagasia/mcet-dept
+	unzip and properly import both projects
+
