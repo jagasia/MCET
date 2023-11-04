@@ -481,3 +481,8 @@ https://github.com/jagasia/mcet-dept
 	unzip and properly import both projects
 
 --------------------------------------------
+
+RestTemplate
+
+RestTemplate rt=new RestTemplate();
+		Department result = rt.getForObject("http://localhost:5000/department/1", Department.class);
